@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Working with UVIT | Python Astronomy and More …</title>
+<meta name="generator" content="Jekyll v3.5.2" />
+<meta property="og:title" content="Working with UVIT" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UVIT is an Ultra Violet telescope on board ASTROSAT. It stands for Ultra Violet Imaging Telescope and is made up of 3 separate telescopes. Here I will mainly talk about the data processing pipeline. The raw data is processed by ISSDAC and the result is a Level 1 data file. The Level 1 data files contain all the necessary information to make the final image (which is done by the Level 2 pipeline). The basic philosophy is this. We have a list of photons and the time and position of their detection. If we simply plot the positions of the photons we should get the image. There is a small problem though. The position of each photon is in detector coordinates and telescope moves during observation. If we can somehow correct for this movement (also called drift and jitter), we should get our image and that is pretty much the basic framework. the pipeline. Now that we have the big picture lets dive in deeper. With the Level 1 product we get the following things" />
+<meta property="og:description" content="UVIT is an Ultra Violet telescope on board ASTROSAT. It stands for Ultra Violet Imaging Telescope and is made up of 3 separate telescopes. Here I will mainly talk about the data processing pipeline. The raw data is processed by ISSDAC and the result is a Level 1 data file. The Level 1 data files contain all the necessary information to make the final image (which is done by the Level 2 pipeline). The basic philosophy is this. We have a list of photons and the time and position of their detection. If we simply plot the positions of the photons we should get the image. There is a small problem though. The position of each photon is in detector coordinates and telescope moves during observation. If we can somehow correct for this movement (also called drift and jitter), we should get our image and that is pretty much the basic framework. the pipeline. Now that we have the big picture lets dive in deeper. With the Level 1 product we get the following things" />
+<link rel="canonical" href="http://0.0.0.0:4000/jekyll/update/2019/12/16/welcome-to-jekyll.html" />
+<meta property="og:url" content="http://0.0.0.0:4000/jekyll/update/2019/12/16/welcome-to-jekyll.html" />
+<meta property="og:site_name" content="Python Astronomy and More …" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-12-16T10:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"UVIT is an Ultra Violet telescope on board ASTROSAT. It stands for Ultra Violet Imaging Telescope and is made up of 3 separate telescopes. Here I will mainly talk about the data processing pipeline. The raw data is processed by ISSDAC and the result is a Level 1 data file. The Level 1 data files contain all the necessary information to make the final image (which is done by the Level 2 pipeline). The basic philosophy is this. We have a list of photons and the time and position of their detection. If we simply plot the positions of the photons we should get the image. There is a small problem though. The position of each photon is in detector coordinates and telescope moves during observation. If we can somehow correct for this movement (also called drift and jitter), we should get our image and that is pretty much the basic framework. the pipeline. Now that we have the big picture lets dive in deeper. With the Level 1 product we get the following things","@type":"BlogPosting","url":"http://0.0.0.0:4000/jekyll/update/2019/12/16/welcome-to-jekyll.html","headline":"Working with UVIT","dateModified":"2019-12-16T10:00:00-06:00","datePublished":"2019-12-16T10:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4000/jekyll/update/2019/12/16/welcome-to-jekyll.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:4000/feed.xml" title="Python Astronomy and More ..." /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Python Astronomy and More ...</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Working with UVIT</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-12-16T10:00:00-06:00" itemprop="datePublished">Dec 16, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>UVIT is an Ultra Violet telescope on board ASTROSAT. It stands for Ultra Violet Imaging Telescope and is made up of 3 separate telescopes. Here I will mainly talk about the data processing pipeline. The raw data is processed by ISSDAC and the result is a Level 1 data file. The Level 1 data files contain all the necessary information to make the final image (which is done by the Level 2 pipeline). The basic philosophy is this. We have a list of photons and the time and position of their detection. If we simply plot the positions of the photons we should get the image. There is a small problem though. The position of each photon is in detector coordinates and telescope moves during observation. If we can somehow correct for this movement (also called drift and jitter), we should get our image and that is pretty much the basic framework. the pipeline. Now that we have the big picture lets dive in deeper. 
+With the Level 1 product we get the following things</p>
+
+<ul>
+  <li>The FUV and NUV data in folder uvtF and uvtN.</li>
+  <li>The VISible data in uvtV folder.</li>
+</ul>
+
+<p>These pretty much contain all the data you will need to make a decent image. These are fed through Data Ingest that creates a list of photons for FUV and NUV along with their time and position of detection. For VIS it creates images.</p>
+
+<h1 id="drift-series">Drift Series</h1>
+<p>Drift Series is the the way the telescope moves during an observation. To find this we look at the VIS frames created by Data Ingest and identify the bright stars in each frame. We track these stars through the the entire observation to determine the drift series. VIS frames are approximately spaces 1s apart . It is important we keep track of the movememnt of these bright stars as a function of time (usually MJD as per the VIS clock) . Sometimes due to a variety of resons some data is missing and we have to skip frames. Skipping a few frames is fine, but if you skip too many frames then we have inaccurate frift series and hence bad angular resolution</p>
+
+<h1 id="making-the-image">Making the Image</h1>
+<p>Makint the image is the next step. For each photon detection, look at the time of detection and from the drift series find the drift vector form an arbitary fixed reference and move the photon position by this vector. Doing this for all photons and plotting the final postion give us the final image.</p>
+
+<p>However there are a bunch of factors that makes life more complicated</p>
+
+<ul>
+  <li>Presence of unexplained stripes in the the VIS images.</li>
+  <li>Different clocks of NUV , FUV and VIS. Sometimes ues to level 1 data processing the clocks are not completely synchronized.</li>
+</ul>
+
+<h1 id="results-and-unresolved-issues">Results and Unresolved Issues</h1>
+<p>With every known systematic taken into account we get spectacular images. 
+<img src="/images/header_img.png" alt="NGC 2336" />
+<em>This is NGC 2336 in NUV. This was one of the very first observations of UVIT as extensively used for performance verification</em></p>
+
+<p>The target angular resolution was 1.8” but analyzing a typical star shows angular resolution of about 1.3”-1.4”. Each pixel is about 0.3”. 
+<img src="/images/typicalStar.png" alt="A Typical Star" /></p>
+
+<p>The FUV images are not as spectacular as NUV since there are too few photons. One of the most mysterious things we encountered (and is still unexplained) is these crosshair patterns. 
+<img src="/images/crosshair.png" alt="Crosshair" />
+It is a really subtle effect and without the correct color scheme in ds9 is is invisible to the naked eye. At first glance seems to be the a faint refection of some sort of mechanical support, but that is just a speculation.</p>
+
+
+  </div><a class="u-url" href="/jekyll/update/2019/12/16/welcome-to-jekyll.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Python Astronomy and More ...</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Python Astronomy and More ...</li><li><a class="u-email" href="mailto:dutta26@purdue.edu">dutta26@purdue.edu</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/anirban1195"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">anirban1195</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An archive of the interesting things I do 
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
